@@ -1,0 +1,32 @@
+import React, { Component } from 'react'
+
+class SearchBar extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      term: '',
+      inital: props.initial
+    }
+  }
+
+  render() {
+    return (
+      <div className="search-bar">
+        <input value={this.state.term} onChange={event => this.onInputchange(event.target.value)} />
+      </div>
+    )
+  }
+
+  onInputchange(term) {
+    this.setState({ term })
+
+    if (term.length === 0) {
+      this.props.onSearchTermChange(this.state.inital)
+    } else {
+      this.props.onSearchTermChange(term)
+    }
+  }
+}
+
+export default SearchBar
